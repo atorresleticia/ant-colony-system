@@ -23,29 +23,60 @@ int main(int argc, char* argv[])
 		cerr << "Could not open file " << file_name << endl;
 		return 1;
 	}
-
-	double** cities;
+	
+	string jumper;
+	for (int i = 0; i < 7; i++)
+	{
+		getline(cities_file, jumper);
+		cout << jumper << endl;
+	}
 
 	if (file_name == "gr96.txt")
 	{
-		cities = new double*[G_M];
+		double** cities = new double*[G_M];
 		for(int i = 0; i < G_N; i++)
 		{
 			cities[i] = new double[G_N];
 		}
-		// determinar distancia de cities[i][j] por distancia euclidiana
+		
 	}
 	else if (file_name == "hk48.txt")
 	{
-		cities = new double*[H_M];
-		for (int i = 0; i < H_N; i++)
+		int cities[H_M][H_N] = { 0 };
+
+		int reader;
+		ofstream out("oi.txt");
+
+		for(int i = 0; i < H_M; i++)
 		{
-			cities[i] = new double[H_N];
+			for (int j = 0; j < H_N; j++)
+			{
+				cities_file >> cities[i][j];
+				if (cities[i][j] == 0)
+				{
+					i++;
+					j = 0;
+				}
+			}
 		}
 
+		for (int i = 0; i < H_M; i++)
+		{
+			for (int j = 0; j < H_N; j++)
+			{
+				out << cities[i][j] << "\t";
+			}
+			out << endl;
+		}
+		out.close();
 
-
+	} else
+	{
+		cerr << "File not accepted" << endl;
+		return 1;
 	}
+
+	cities_file.close();
 
     return 0;
 }
