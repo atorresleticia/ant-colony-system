@@ -34,31 +34,30 @@ int main(int argc, char* argv[])
 	if (file_name == "gr96.txt")
 	{
 		double** cities = new double*[G_M];
+
+		ofstream out("gr96_.txt");
 		for(int i = 0; i < G_N; i++)
 		{
 			cities[i] = new double[G_N];
 		}
 		
 	}
-	else if (file_name == "hk48.txt")
+	else if (file_name == "hk48_.txt")
 	{
 		int cities[H_M][H_N] = { 0 };
 
-		int reader;
-		ofstream out("oi.txt");
+		ofstream out("hk48.txt");
+
 
 		for(int i = 0; i < H_M; i++)
 		{
-			for (int j = 0; j < H_N; j++)
+			for (int j = 0; j <= i; j++)
 			{
 				cities_file >> cities[i][j];
-				if (cities[i][j] == 0)
-				{
-					i++;
-					j = 0;
-				}
+
 			}
 		}
+
 
 		for (int i = 0; i < H_M; i++)
 		{
